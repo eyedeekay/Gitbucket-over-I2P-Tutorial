@@ -15,12 +15,12 @@ Let's use Gitbucket as an example.
 
 **First**, go to the I2P Hidden Services Manager and "Stop" the hidden service for the default HTTP Server as seen below:
 
-Before: 
-
+- Before:
 - ![Before](step-0-0.png)
 
-After:
+It will take a few seconds for the hidden service to shut down. The indicator to the left of the stop button will turn red when the tunnel is fully stopped.
 
+- After:
 - ![After](step-0-1.png)
 
 **Next**, download the Gitbucket `.war` file somewhere. You can download it directly to the `$I2P/eepsite/webapps/` directory if you want, but it may be better to download it somwhere else and copy it where you need to later.
