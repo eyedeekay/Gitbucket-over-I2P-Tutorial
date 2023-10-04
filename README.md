@@ -25,7 +25,7 @@ Let's use Gitbucket as an example.
 
 ```sh
 release_tag=$(wget -O - https://api.github.com/repos/gitbucket/gitbucket/releases/latest | jq -r ".tag_name")
-wget -O ~/Downlaods/gitbucket.war https://github.com/gitbucket/gitbucket/releases/download/$release_tag/gitbucket.war
+wget -O ~/Downloads/gitbucket.war https://github.com/gitbucket/gitbucket/releases/download/$release_tag/gitbucket.war
 ```
 
  - Using a Web Browser: Visit `https://github.com/gitbucket/gitbucket/releases/latest` in your browser and click the `gitbucket.war` download. ![Screenshot](gitbucket_github.png)
@@ -34,12 +34,21 @@ wget -O ~/Downlaods/gitbucket.war https://github.com/gitbucket/gitbucket/release
 
  - Using the Terminal:
 
+```sh
+cp ~/Downloads/gitbucket.war ~/.i2p/eepsite/webapps/gitbucket.war
+```
+
  - Using the File Navigator:
 
-**Finally**, re-start the I2P router.
+**Finally**, re-start the I2P router and test the gitbucket
 
  - Using the terminal:
 
 ```sh
-
+i2prouter graceful
+while i2prouter status | grep STARTED; do sleep 10s; done
+i2prouter start
 ```
+
+ - Using a web browser: Click the highlighted(Red) button in the bottom of the sidebar: ![restart](restart.png)
+

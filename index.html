@@ -1,0 +1,251 @@
+<html>
+  <head>
+    <title>
+      Gitbucket over I...
+    </title>
+    <meta name="author" content="eyedeekay" />
+    <meta name="description" content="Gitbucket-over-I2P-Tutorial" />
+    <meta name="keywords" content="main" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="showhider.css" />
+    <link rel="stylesheet" type="text/css" href="darklight.css" />
+  </head>
+  <body>
+    <input type="checkbox" id="checkboxDarkLight">
+    <div class="container">
+      <div id="navbar">
+        <a href="#shownav">
+          Show navigation
+        </a>
+        <div id="shownav">
+          <div id="hidenav">
+            <ul>
+              <li>
+                <a href="..">
+                  Up one level ^
+                </a>
+              </li>
+              <li>
+                <a href="index.html">
+                  index
+                </a>
+              </li>
+            </ul>
+            <br>
+            <a href="#hidenav">
+              Hide Navigation
+            </a>
+          </div>
+        </div>
+      </div>
+      <a id="returnhome" href="/">
+        /
+      </a>
+      <h1>
+        Gitbucket over I2P Tutorial
+      </h1>
+      <p>
+        As many people already know, I operate the gitlab server at
+        <a href="https://i2pgit.org">
+          <code>
+            i2pgit.org
+          </code>
+        </a>
+        and
+        <a href="http://git.idk.i2p">
+          <code>
+            git.idk.i2p
+          </code>
+        </a>
+        , however, I would not recommend Gitlab for a small operation like the one I donate to I2P. Self-Hosting gitlab is difficult, demanding, and time-consuming due to the need to update gitlab very frequently in order to keep up with security updates, and the tendency of gitlab updates to break the gitlab instance. We use gitlab for I2P right now because of it&rsquo;s many advanced features, but there are several far simpler git hosts available to set up over I2P.
+      </p>
+      <p>
+        One git host which is especially easy to deply on the Java I2P distribution is the &ldquo;Gitbucket&rdquo; git host, which is written is Scala, a JVM compatible language, and which uses Servlet 3.0, making it compatible with the &ldquo;Jetty&rdquo; web server used in Java I2P to provide a default hidden service.
+      </p>
+      <p>
+        Servlet is a Java technology which is used to deploy webapps to a web server. Java I2P is compatible with Servlet 3.0. In order to deploy a webapp to Java I2P, one needs to:
+      </p>
+      <ol>
+        <li>
+          Stop the HTTP Server Tunnel
+        </li>
+        <li>
+          Download the webapp and configure it&rsquo;s dependencies.
+        </li>
+        <li>
+          Place the webapp into the
+          <code>
+            $I2P/eepsite/webapps/
+          </code>
+          directory
+        </li>
+        <li>
+          Restart I2P
+        </li>
+      </ol>
+      <p>
+        Let&rsquo;s use Gitbucket as an example.
+      </p>
+      <p>
+        <strong>
+          First
+        </strong>
+        , go to the I2P Hidden Services Manager and &ldquo;Stop&rdquo; the hidden service for the default HTTP Server as seen below:
+      </p>
+      <ul>
+        <li>
+          <p>
+            Before:
+            <img src="step-0-0.png" alt="Before" />
+          </p>
+        </li>
+        <li>
+          <p>
+            After:
+            <img src="step-0-1.png" alt="After" />
+          </p>
+        </li>
+      </ul>
+      <p>
+        <strong>
+          Next
+        </strong>
+        , download the Gitbucket
+        <code>
+          .war
+        </code>
+        file somewhere. You can download it directly to the
+        <code>
+          $I2P/eepsite/webapps/
+        </code>
+        directory if you want, but it may be better to download it somwhere else and copy it where you need to later.
+      </p>
+      <ul>
+        <li>
+          Using the terminal:
+        </li>
+      </ul>
+      <pre><code class="language-sh">release_tag=$(wget -O - https://api.github.com/repos/gitbucket/gitbucket/releases/latest | jq -r &quot;.tag_name&quot;)
+wget -O ~/Downloads/gitbucket.war https://github.com/gitbucket/gitbucket/releases/download/$release_tag/gitbucket.war
+</code></pre>
+      <ul>
+        <li>
+          Using a Web Browser: Visit
+          <code>
+            https://github.com/gitbucket/gitbucket/releases/latest
+          </code>
+          in your browser and click the
+          <code>
+            gitbucket.war
+          </code>
+          download.
+          <img src="gitbucket_github.png" alt="Screenshot" />
+        </li>
+      </ul>
+      <p>
+        <strong>
+          Then
+        </strong>
+        , copy the
+        <code>
+          gitbucket.war
+        </code>
+        file into the
+        <code>
+          $I2P/eepsite/webapps/
+        </code>
+        directory.
+      </p>
+      <ul>
+        <li>
+          Using the Terminal:
+        </li>
+      </ul>
+      <pre><code class="language-sh">cp ~/Downloads/gitbucket.war ~/.i2p/eepsite/webapps/gitbucket.war
+</code></pre>
+      <ul>
+        <li>
+          Using the File Navigator:
+        </li>
+      </ul>
+      <p>
+        <strong>
+          Finally
+        </strong>
+        , re-start the I2P router and test the gitbucket
+      </p>
+      <ul>
+        <li>
+          Using the terminal:
+        </li>
+      </ul>
+      <pre><code class="language-sh">i2prouter graceful
+while i2prouter status | grep STARTED; do sleep 10s; done
+i2prouter start
+</code></pre>
+      <ul>
+        <li>
+          Using a web browser: Click the highlighted(Red) button in the bottom of the sidebar:
+          <img src="restart.png" alt="restart" />
+        </li>
+      </ul>
+      <div id="sourcecode">
+        <span id="sourcehead">
+          <strong>
+            Get the source code:
+          </strong>
+        </span>
+        <ul>
+          <li>
+            <a href="https://github.com/eyedeekay/Gitbucket-over-I2P-Tutorial.git">
+              Source Repository: (https://github.com/eyedeekay/Gitbucket-over-I2P-Tutorial.git)
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <a href="#show">
+          Show license
+        </a>
+        <div id="show">
+          <div id="hide">
+            <pre><code>MIT License
+
+Copyright (c) 2023 idk
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre>
+            <a href="#hide">
+              Hide license
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <iframe src="https://snowflake.torproject.org/embed.html" width="320" height="240" frameborder="0" scrolling="no"></iframe>
+    </div>
+    <div>
+      <a href="https://geti2p.net/">
+        <img class="i2plogo" src="i2plogo.png"></img>
+        I2P
+      </a>
+    </div>
+  </body>
+</html>
