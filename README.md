@@ -1,5 +1,7 @@
 # Gitbucket over I2P Tutorial
 
+**Caution WIP, this tutorial is unfinished but in a working state.**
+
 As many people already know, I operate the gitlab server at [`i2pgit.org`](https://i2pgit.org) and [`git.idk.i2p`](http://git.idk.i2p), however, I would not recommend Gitlab for a small operation like the one I donate to I2P. Self-Hosting gitlab is difficult, demanding, and time-consuming due to the need to update gitlab very frequently in order to keep up with security updates, and the tendency of gitlab updates to break the gitlab instance. We use gitlab for I2P right now because of it's many advanced features, but there are several far simpler git hosts available to set up over I2P.
 
 One git host which is especially easy to deply on the Java I2P distribution is the "Gitbucket" git host, which is written is Scala, a JVM compatible language, and which uses Servlet 3.0, making it compatible with the "Jetty" web server used in Java I2P to provide a default hidden service.
@@ -59,3 +61,9 @@ i2prouter start
 
  - Using a web browser: Click the highlighted(Red) button in the bottom of the sidebar: ![restart](restart.png)
 
+Once I2P has restarted, visit gitbucket locally and change your password at: `http://localhost:7658/gitbucket/admin/users/root/_edituser`
+
+- Using a web browser visit [This page](http://localhost:7658/gitbucket/admin/users/root/_edituser)
+- ![Set password](password.png)
+
+You are now the proud hoster of a new Gitbucket server on I2P.
