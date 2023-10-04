@@ -43,7 +43,9 @@ wget -O ~/Downloads/gitbucket.war https://github.com/gitbucket/gitbucket/release
 cp ~/Downloads/gitbucket.war ~/.i2p/eepsite/webapps/gitbucket.war
 ```
 
- - Using the File Navigator:
+- Using the File Navigator:
+- Show the config files in your home directory. ![Show hidden files](showhidden.png)
+- Copy the file from your downloads directory to the webapps directory. ![Final webapps](hidden.png)
 
 **Finally**, re-start the I2P router and test the gitbucket
 
