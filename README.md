@@ -15,9 +15,11 @@ Let's use Gitbucket as an example.
 
 **First**, go to the I2P Hidden Services Manager and "Stop" the hidden service for the default HTTP Server as seen below:
 
-Before: ![Before](step-0-0.png)
+- Before: 
+- ![Before](step-0-0.png)
 
-After: ![After](step-0-1.png)
+- After:
+- ![After](step-0-1.png)
 
 **Next**, download the Gitbucket `.war` file somewhere. You can download it directly to the `$I2P/eepsite/webapps/` directory if you want, but it may be better to download it somwhere else and copy it where you need to later.
 
@@ -28,9 +30,8 @@ release_tag=$(wget -O - https://api.github.com/repos/gitbucket/gitbucket/release
 wget -O ~/Downloads/gitbucket.war https://github.com/gitbucket/gitbucket/releases/download/$release_tag/gitbucket.war
 ```
 
- - Using a Web Browser: Visit `https://github.com/gitbucket/gitbucket/releases/latest` in your browser and click the `gitbucket.war` download. 
-
-![Screenshot](gitbucket_github.png)
+- Using a Web Browser: Visit `https://github.com/gitbucket/gitbucket/releases/latest` in your browser and click the `gitbucket.war` download.
+- ![Screenshot](gitbucket_github.png)
 
 **Then**, copy the `gitbucket.war` file into the `$I2P/eepsite/webapps/` directory.
 
