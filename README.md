@@ -1,2 +1,23 @@
-# Gitbucket-over-I2P-Tutorial
-How to set up Gitbucket as a jetty webapp on I2P.
+# Gitbucket over I2P Tutorial
+
+As many people already know, I operate the gitlab server at [`i2pgit.org`](https://i2pgit.org) and [`git.idk.i2p`](http://git.idk.i2p), however, I would not recommend Gitlab for a small operation like the one I donate to I2P. Self-Hosting gitlab is difficult, demanding, and time-consuming due to the need to update gitlab very frequently in order to keep up with security updates, and the tendency of gitlab updates to break the gitlab instance. We use gitlab for I2P right now because of it's many advanced features, but there are several far simpler git hosts available to set up over I2P.
+
+One git host which is especially easy to deply on the Java I2P distribution is the "Gitbucket" git host, which is written is Scala, a JVM compatible language, and which uses Servlet 3.0, making it compatible with the "Jetty" web server used in Java I2P to provide a default hidden service.
+
+Servlet is a Java technology which is used to deploy webapps to a web server. Java I2P is compatible with Servlet 3.0. In order to deploy a webapp to Java I2P, one needs to:
+
+ 1. Stop the HTTP Server Tunnel
+ 2. Download the webapp and configure it's dependencies.
+ 3. Place the webapp into the `$I2P/eepsite/webapps` directory
+ 4. Restart I2P
+
+Let's use Gitbucket as an example.
+
+**First**, go to the I2P Hidden Services Manager and "Stop" the hidden service for the default HTTP Server as seen below:
+
+![]()
+
+![]()
+
+
+
