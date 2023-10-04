@@ -8,16 +8,38 @@ Servlet is a Java technology which is used to deploy webapps to a web server. Ja
 
  1. Stop the HTTP Server Tunnel
  2. Download the webapp and configure it's dependencies.
- 3. Place the webapp into the `$I2P/eepsite/webapps` directory
+ 3. Place the webapp into the `$I2P/eepsite/webapps/` directory
  4. Restart I2P
 
 Let's use Gitbucket as an example.
 
 **First**, go to the I2P Hidden Services Manager and "Stop" the hidden service for the default HTTP Server as seen below:
 
-![]()
+- Before: ![Before](step-0-0.png)
 
-![]()
+- After: ![After](step-0-1.png)
 
+**Next**, download the Gitbucket `.war` file somewhere. You can download it directly to the `$I2P/eepsite/webapps/` directory if you want, but it may be better to download it somwhere else and copy it where you need to later.
 
+ - Using the terminal:
 
+```sh
+release_tag=$(wget -O - https://api.github.com/repos/gitbucket/gitbucket/releases/latest | jq -r ".tag_name")
+wget -O ~/Downlaods/gitbucket.war https://github.com/gitbucket/gitbucket/releases/download/$release_tag/gitbucket.war
+```
+
+ - Using a Web Browser: Visit `https://github.com/gitbucket/gitbucket/releases/latest` in your browser and click the `gitbucket.war` download. ![Screenshot](gitbucket_github.png)
+
+**Then**, copy the `gitbucket.war` file into the `$I2P/eepsite/webapps/` directory.
+
+ - Using the Terminal:
+
+ - Using the File Navigator:
+
+**Finally**, re-start the I2P router.
+
+ - Using the terminal:
+
+```sh
+
+```
